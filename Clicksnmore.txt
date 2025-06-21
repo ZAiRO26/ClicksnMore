@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elena Moreau - Professional Photography</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            background: #fafafa;
+            color: #2c2c2c;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #c0c0c0;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a0a0a0;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(250, 250, 250, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1.5rem 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            color: #2c2c2c;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
+        .nav-links a {
+            color: #2c2c2c;
+            text-decoration: none;
+            font-weight: 300;
+            letter-spacing: 1px;
+            position: relative;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 1px;
+            background: #2c2c2c;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: #666;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 2px;
+            background: #2c2c2c;
+            transition: all 0.3s ease;
+        }
+
+        /* Page Content */
+        .page-content {
+            min-height: 100vh;
+            padding-top: 120px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: pageEnter 0.8s ease forwards;
+        }
+
+        @keyframes pageEnter {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Home Page */
+        .hero {
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, #fafafa 0%, #f0f0f0 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 200;
+            letter-spacing: 5px;
+            margin-bottom: 2rem;
+            color: #2c2c2c;
+            animation: fadeInUp 1.2s ease 0.3s both;
+        }
+
+        .hero .subtitle {
+            font-size: 1.4rem;
+            color: #666;
+            margin-bottom: 3rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            animation: fadeInUp 1.2s ease 0.6s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            animation: fadeInUp 1.2s ease 0.9s both;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1.2rem 2.5rem;
+            text-decoration: none;
+            font-weight: 300;
+            letter-spacing: 1px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 2px;
+        }
+
+        .btn-primary {
+            background: #2c2c2c;
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: #444;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(44, 44, 44, 0.15);
+        }
+
+        .btn-outline {
+            border: 1px solid #2c2c2c;
+            color: #2c2c2c;
+        }
+
+        .btn-outline:hover {
+            background: #2c2c2c;
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(44, 44, 44, 0.15);
+        }
+
+        /* Services Page */
+        .services-hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #f8f8f8 0%, #efefef 100%);
+        }
+
+        .services-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 200;
+            margin-bottom: 1.5rem;
+            color: #2c2c2c;
+        }
+
+        .services-hero p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .service-card {
+            background: #fff;
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: #f8f8f8;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            background: #2c2c2c;
+            color: #fff;
+        }
+
+        .service-card h3 {
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            color: #2c2c2c;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .service-price {
+            font-size: 1.4rem;
+            font-weight: 300;
+            color: #2c2c2c;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Portfolio Page */
+        .portfolio-hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #f8f8f8 0%, #efefef 100%);
+        }
+
+        .portfolio-filters {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: none;
+            border: 1px solid #ddd;
+            padding: 0.8rem 2rem;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 25px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: #2c2c2c;
+            color: #fff;
+            border-color: #2c2c2c;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+        }
+
+        .portfolio-item {
+            position: relative;
+            aspect-ratio: 4/5;
+            background: #f0f0f0;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .portfolio-item:hover {
+            transform: scale(1.02);
+        }
+
+        .portfolio-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(44, 44, 44, 0.7), rgba(0, 0, 0, 0.3));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+
+        .portfolio-item:hover::before {
+            opacity: 1;
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 2rem;
+            left: 2rem;
+            right: 2rem;
+            color: #fff;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .portfolio-overlay h3 {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-overlay p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        /* About Page */
+        .about-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            align-items: center;
+        }
+
+        .about-text h1 {
+            font-size: 3.5rem;
+            font-weight: 200;
+            margin-bottom: 2rem;
+            color: #2c2c2c;
+        }
+
+        .about-text p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 500px;
+            background: #f0f0f0;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image::before {
+            content: 'Professional Portrait';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #999;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        .stats-section {
+            background: #f8f8f8;
+            padding: 4rem 2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 200;
+            color: #2c2c2c;
+            margin-bottom: 1rem;
+        }
+
+        .stat-label {
+            color: #666;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* Contact Page */
+        .contact-hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #f8f8f8 0%, #efefef 100%);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .contact-info h3 {
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            color: #2c2c2c;
+        }
+
+        .contact-info p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .contact-details {
+            margin: 3rem 0;
+        }
+
+        .contact-details div {
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-details strong {
+            color: #2c2c2c;
+            min-width: 80px;
+        }
+
+        .contact-form {
+            background: #fff;
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #2c2c2c;
+            font-weight: 300;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #2c2c2c;
+            background: #fff;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c2c2c;
+            color: #fff;
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer p {
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 300;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(250, 250, 250, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem;
+                transform: translateY(-100%);
+                transition: transform 0.3s ease;
+                border-top: 1px solid rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .about-hero,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Page Transitions */
+        .page-transition {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .page-transition.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Loading Animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #fafafa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #f0f0f0;
+            border-top: 2px solid #2c2c2c;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo">Elena Moreau</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#" onclick="showPage('home')" class="nav-link active">Home</a></li>
+                <li><a href="#" onclick="showPage('services')" class="nav-link">Services</a></li>
+                <li><a href="#" onclick="showPage('portfolio')" class="nav-link">Portfolio</a></li>
+                <li><a href="#" onclick="showPage('about')" class="nav-link">About</a></li>
+                <li><a href="#" onclick="showPage('contact')" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="mobile-menu" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home" class="page-content">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Elena Moreau</h1>
+                <p class="subtitle">Fine Art Wedding & Portrait Photography</p>
+                <div class="hero-buttons">
+                    <a href="#" onclick="showPage('portfolio')" class="btn btn-primary">View Portfolio</a>
+                    <a href="#" onclick="showPage('contact')" class="btn btn-outline">Get In Touch</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Services Page -->
+    <div id="services" class="page-content" style="display: none;">
+        <section class="services-hero">
+            <h1>Services</h1>
+            <p>Capturing life's most precious moments with artistic vision and timeless elegance</p>
+        </section>
+        
+        <section class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">💒</div>
+                <h3>Wedding Photography</h3>
+                <p>Complete wedding day coverage with artistic storytelling. From getting ready to the last dance, I capture every precious moment of your special day.</p>
+                <div class="service-price">Starting at $3,500</div>
+                <a href="#" onclick="showPage('contact')" class="btn btn-outline">Inquire Now</a>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">💕</div>
+                <h3>Engagement Sessions</h3>
+                <p>Romantic couple photography sessions that celebrate your love story. Perfect for save-the-dates and engagement announcements.</p>
+                <div class="service-price">Starting at $650</div>
+                <a href="#" onclick="showPage('contact')" class="btn btn-outline">Inquire Now</a>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">👗</div>
+                <h3>Fashion Photography</h3>
+                <p>High-end fashion shoots for models, designers, and brands. Creative direction and professional styling included.</p>
+                <div class="service-price">Starting at $1,200</div>
+                <a href="#" onclick="showPage('contact')" class="btn btn-outline">Inquire Now</a>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">📸</div>
+                <h3>Portrait Sessions</h3>
+                <p>Professional headshots and personal branding photography. Perfect for professionals, artists, and entrepreneurs.</p>
+                <div class="service-price">Starting at $450</div>
+                <a href="#" onclick="showPage('contact')" class="btn btn-outline">Inquire Now</a>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">🎉</div>
+                <h3>Event Photography</h3>
+                <p>Corporate events, parties, and special occasions captured with professional expertise and creative flair.</p>
+                <div class="service-price">Starting at $800</div>
+                <a href="#" onclick="showPage('contact')" class="btn btn-outline">Inquire Now</a>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">🎨</div>
+                <h3>Fine Art Sessions</h3>
+                <p>Artistic and conceptual photography for personal expression and creative projects. Fully customized experiences.</p>
+                <div class="service-price">Starting at $950</div>
+                <a href="#" onclick="showPage('contact')" class="btn btn-outline">Inquire Now</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Portfolio Page -->
+    <div id="portfolio" class="page-content" style="display: none;">
+        <section class="portfolio-hero">
+            <h1>Portfolio</h1>
+            <p>A curated collection of my finest work across various photography genres</p>
+        </section>
+        
+        <div class="portfolio-filters">
+            <button class="filter-btn active" onclick="filterPortfolio('all')">All Work</button>
+            <button class="filter-btn" onclick="filterPortfolio('wedding')">Weddings</button>
+            <button class="filter-btn" onclick="filterPortfolio('fashion')">Fashion</button>
+            <button class="filter-btn" onclick="filterPortfolio('portrait')">Portraits</button>
+            <button class="filter-btn" onclick="filterPortfolio('event')">Events</button>
+        </div>
+        
+        <section class="portfolio-grid">
+            <div class="portfolio-item" data-category="wedding">
+                <div class="portfolio-overlay">
+                    <h3>Sarah & Michael</h3>
+                    <p>Romantic Garden Wedding</p>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="fashion">
+                <div class="portfolio-overlay">
+                    <h3>Urban Elegance</h3>
+                    <p>Fashion Editorial</p>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="portrait">
+                <div class="portfolio-overlay">
+                    <h3>Executive Portraits</h3>
+                    <p>Corporate Headshots</p>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="wedding">
+                <div class="portfolio-overlay">
+                    <h3>Emma & James</h3>
+                    <p>Destination Wedding</p>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="event">
+                <div class="portfolio-overlay">
+                    <h3>Corporate Gala</h3>
+                    <p>Event Coverage</p>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="fashion">
+                <div class="portfolio-overlay">
+                    <h3>Avant Garde</h3>
+                    <p>Creative Fashion</p>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="portrait">
+                <div class="portfolio-overlay">
+                    <h3>Artist Series</h3>
+                    <p>Creative Portraits</p>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="wedding">
+                <div class="portfolio-overlay">
+                    <h3>Lisa & David</h3>
+                    <p>Intimate Ceremony</p>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="event">
+                <div class="portfolio-overlay">
+                    <h3>Gallery Opening</h3>
+                    <p>Art Event</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- About Page -->
+    <div id="about" class="page-content" style="display: none;">
+        <section class="about-hero">
+            <div class="about-text">
+                <h1>About Elena</h1>
+                <p>With over a decade of experience in fine art photography, I specialize in capturing the authentic emotions and timeless beauty of life's most significant moments.</p>
+                <p>My approach combines classical techniques with contemporary artistry, creating images that are both technically excellent and emotionally resonant. I believe that photography is not just about capturing what you see, but about revealing what you feel.</p>
+                <p>Based in San Francisco, I work with clients worldwide, bringing the same level of passion and artistry to every project, whether it's an intimate elopement or a grand celebration.</p>
+                <a href="#" onclick="showPage('contact')" class="btn btn-primary">Work With Me</a>
+            </div>
+            <div class="about-image"></div>
+        </section>
+        
+        <section class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Weddings Captured</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">25+</div>
+                    <div class="stat-label">Countries Visited</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Client Satisfaction</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact" class="page-content" style="display: none;">
+        <section class="contact-hero">
+            <h1>Let's Create Something Beautiful</h1>
+            <p>Ready to capture your special moments? I'd love to hear about your vision and discuss how we can bring it to life.</p>
+        </section>
+        
+        <section class="contact-content">
+            <div class="contact-info">
+                <h3>Get In Touch</h3>
+                <p>I believe every story is unique and deserves to be told with care and artistry. Whether you're planning an intimate gathering or a grand celebration, I'm here to help capture those precious moments.</p>
+                
+                <div class="contact-details">
+                    <div>
+                        <strong>Email:</strong>
+                        <span>hello@elenamoreau.com</span>
+                    </div>
+                    <div>
+                        <strong>Phone:</strong>
+                        <span>+1 (415) 555-0123</span>
+                    </div>
+                    <div>
+                        <strong>Studio:</strong>
+                        <span>San Francisco, CA</span>
+                    </div>
+                    <div>
+                        <strong>Travel:</strong>
+                        <span>Worldwide Available</span>
+                    </div>
+                </div>
+                
+                <p>Response time is typically within 24 hours. I look forward to hearing from you!</p>
+            </div>
+            
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="eventDate">Event Date</label>
+                            <input type="date" id="eventDate" name="eventDate">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="serviceType">Service Type</label>
+                        <select id="serviceType" name="serviceType" required>
+                            <option value="">Select a service</option>
+                            <option value="wedding">Wedding Photography</option>
+                            <option value="engagement">Engagement Session</option>
+                            <option value="fashion">Fashion Photography</option>
+                            <option value="portrait">Portrait Session</option>
+                            <option value="event">Event Photography</option>
+                            <option value="fineart">Fine Art Session</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="budget">Estimated Budget</label>
+                        <select id="budget" name="budget">
+                            <option value="">Select budget range</option>
+                            <option value="under-1000">Under $1,000</option>
+                            <option value="1000-2500">$1,000 - $2,500</option>
+                            <option value="2500-5000">$2,500 - $5,000</option>
+                            <option value="5000-plus">$5,000+</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Tell me about your vision</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Share details about your event, style preferences, location, and any special requirements..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Elena Moreau Photography. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Page Management
+        let currentPage = 'home';
+        const pages = ['home', 'services', 'portfolio', 'about', 'contact'];
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hide loading screen
+            setTimeout(() => {
+                document.getElementById('loading').classList.add('hidden');
+            }, 1000);
+
+            // Initialize page
+            showPage('home');
+        });
+
+        // Show specific page
+        function showPage(pageName) {
+            // Hide all pages
+            pages.forEach(page => {
+                const pageElement = document.getElementById(page);
+                if (pageElement) {
+                    pageElement.style.display = 'none';
+                }
+            });
+
+            // Show target page
+            const targetPage = document.getElementById(pageName);
+            if (targetPage) {
+                targetPage.style.display = 'block';
+                targetPage.classList.remove('page-transition');
+                setTimeout(() => {
+                    targetPage.classList.add('page-transition', 'active');
+                }, 50);
+            }
+
+            // Update navigation
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            currentPage = pageName;
+
+            // Close mobile menu
+            document.getElementById('navLinks').classList.remove('active');
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Portfolio filtering
+        function filterPortfolio(category) {
+            const items = document.querySelectorAll('.portfolio-item');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            // Update active button
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Filter items
+            items.forEach(item => {
+                const itemCategory = item.getAttribute('data-category');
+                if (category === 'all' || itemCategory === category) {
+                    item.style.display = 'block';
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'scale(1)';
+                    }, 100);
+                } else {
+                    item.style.opacity = '0';
+                    item.style.transform = 'scale(0.8)';
+                    setTimeout(() => {
+                        item.style.display = 'none';
+                    }, 300);
+                }
+            });
+        }
+
+        // Form handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Simulate form submission
+            const submitBtn = this.querySelector('button[type="submit"]');
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                alert('Thank you for your message! I\'ll get back to you within 24 hours.');
+                this.reset();
+                submitBtn.textContent = 'Send Message';
+                submitBtn.disabled = false;
+            }, 2000);
+        });
+
+        // Smooth scrolling for better UX
+        function smoothScroll() {
+            const navbar = document.querySelector('.navbar');
+            let lastScrollTop = 0;
+            
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                // Navbar background change
+                if (scrollTop > 100) {
+                    navbar.style.background = 'rgba(250, 250, 250, 0.98)';
+                    navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+                } else {
+                    navbar.style.background = 'rgba(250, 250, 250, 0.95)';
+                    navbar.style.boxShadow = 'none';
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+        }
+
+        // Initialize smooth scrolling
+        smoothScroll();
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements when they come into view
+        setTimeout(() => {
+            const animatedElements = document.querySelectorAll('.service-card, .portfolio-item, .stat-item');
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                observer.observe(el);
+            });
+        }, 1000);
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                // Close mobile menu
+                document.getElementById('navLinks').classList.remove('active');
+            }
+        });
+
+        // Prevent right-click on images (optional protection)
+        document.addEventListener('contextmenu', function(e) {
+            if (e.target.tagName === 'IMG') {
+                e.preventDefault();
+            }
+        });
+
+        // Lazy loading simulation for portfolio items
+        function lazyLoadPortfolio() {
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+            
+            portfolioItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'scale(1)';
+                }, index * 100);
+            });
+        }
+
+        // Initialize lazy loading when portfolio page is shown
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click event to portfolio nav link
+            document.querySelector('a[onclick="showPage(\'portfolio\')"]').addEventListener('click', function() {
+                setTimeout(lazyLoadPortfolio, 500);
+            });
+        });
+
+        // Add smooth page transitions
+        function addPageTransitions() {
+            const pageElements = document.querySelectorAll('.page-content');
+            
+            pageElements.forEach(page => {
+                page.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+            });
+        }
+
+        // Initialize page transitions
+        addPageTransitions();
+
+        // Custom cursor effect (optional enhancement)
+        function initCustomCursor() {
+            const cursor = document.createElement('div');
+            cursor.style.cssText = `
+                position: fixed;
+                width: 20px;
+                height: 20px;
+                background: rgba(44, 44, 44, 0.1);
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 9999;
+                transition: transform 0.1s ease;
+                display: none;
+            `;
+            document.body.appendChild(cursor);
+
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX - 10 + 'px';
+                cursor.style.top = e.clientY - 10 + 'px';
+                cursor.style.display = 'block';
+            });
+
+            document.addEventListener('mouseout', () => {
+                cursor.style.display = 'none';
+            });
+        }
+
+        // Initialize custom cursor on desktop
+        if (window.innerWidth > 768) {
+            initCustomCursor();
+        }
+    </script>
+</body>
+</html>

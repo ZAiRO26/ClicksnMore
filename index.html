@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ravi Saxena - Professional Photography</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="#" onclick="showPage('home')" class="logo">Ravi Saxena</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#" onclick="showPage('home')" class="nav-link active">Home</a></li>
+                <li><a href="#" onclick="showPage('services')" class="nav-link">Services</a></li>
+                <li><a href="#" onclick="showPage('portfolio')" class="nav-link">Portfolio</a></li>
+                <li><a href="#" onclick="showPage('about')" class="nav-link">About</a></li>
+                <li><a href="#" onclick="showPage('contact')" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="mobile-menu" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home" class="page-content">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Ravi Saxena</h1>
+                <p class="subtitle">Fine Art Wedding & Portrait Photography</p>
+                <div class="hero-buttons">
+                    <a href="#" onclick="showPage('portfolio')" class="btn btn-primary">View Portfolio</a>
+                    <a href="#" onclick="showPage('contact')" class="btn btn-outline">Get In Touch</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Services Page -->
+    <div id="services" class="page-content" style="display: none;">
+        <section class="services-hero">
+            <h1>Services</h1>
+            <p>Capturing life's most precious moments with artistic vision and timeless elegance</p>
+        </section>
+        
+        <section class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">💒</div>
+                <h3>Wedding Photography</h3>
+                <p>Complete wedding day coverage with artistic storytelling. From getting ready to the last dance, I capture every precious moment of your special day.</p>
+                <div class="service-price">Starting at $3,500</div>
+                <a href="#" onclick="showPage('contact')" class="btn btn-outline">Inquire Now</a>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">💕</div>
+                <h3>Engagement Sessions</h3>
+                <p>Romantic couple photography sessions that celebrate your love story. Perfect for save-the-dates and engagement announcements.</p>
+                <div class="service-price">Starting at $650</div>
+                <a href="#" onclick="showPage('contact')" class="btn btn-outline">Inquire Now</a>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">👗</div>
+                <h3>Fashion Photography</h3>
+                <p>High-end fashion shoots for models, designers, and brands. Creative direction and professional styling included.</p>
+                <div class="service-price">Starting at $1,200</div>
+                <a href="#" onclick="showPage('contact')" class="btn btn-outline">Inquire Now</a>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">📸</div>
+                <h3>Portrait Sessions</h3>
+                <p>Professional headshots and personal branding photography. Perfect for professionals, artists, and entrepreneurs.</p>
+                <div class="service-price">Starting at $450</div>
+                <a href="#" onclick="showPage('contact')" class="btn btn-outline">Inquire Now</a>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">🎉</div>
+                <h3>Event Photography</h3>
+                <p>Corporate events, parties, and special occasions captured with professional expertise and creative flair.</p>
+                <div class="service-price">Starting at $800</div>
+                <a href="#" onclick="showPage('contact')" class="btn btn-outline">Inquire Now</a>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">🎨</div>
+                <h3>Fine Art Sessions</h3>
+                <p>Artistic and conceptual photography for personal expression and creative projects. Fully customized experiences.</p>
+                <div class="service-price">Starting at $950</div>
+                <a href="#" onclick="showPage('contact')" class="btn btn-outline">Inquire Now</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Portfolio Page -->
+    <div id="portfolio" class="page-content" style="display: none;">
+        <section class="portfolio-hero">
+            <h1>Portfolio</h1>
+            <p>A curated collection of my finest work across various photography genres</p>
+        </section>
+        
+        <div class="portfolio-filters">
+            <button class="filter-btn active" onclick="filterPortfolio('all')">All Work</button>
+            <button class="filter-btn" onclick="filterPortfolio('wedding')">Weddings</button>
+            <button class="filter-btn" onclick="filterPortfolio('fashion')">Fashion</button>
+            <button class="filter-btn" onclick="filterPortfolio('portrait')">Portraits</button>
+            <button class="filter-btn" onclick="filterPortfolio('event')">Events</button>
+        </div>
+        
+        <section class="portfolio-grid">
+            <div class="portfolio-item" data-category="wedding">
+                <div class="portfolio-overlay">
+                    <h3>Sarah & Michael</h3>
+                    <p>Romantic Garden Wedding</p>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="fashion">
+                <div class="portfolio-overlay">
+                    <h3>Urban Elegance</h3>
+                    <p>Fashion Editorial</p>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="portrait">
+                <div class="portfolio-overlay">
+                    <h3>Executive Portraits</h3>
+                    <p>Corporate Headshots</p>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="wedding">
+                <div class="portfolio-overlay">
+                    <h3>Emma & James</h3>
+                    <p>Destination Wedding</p>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="event">
+                <div class="portfolio-overlay">
+                    <h3>Corporate Gala</h3>
+                    <p>Event Coverage</p>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="fashion">
+                <div class="portfolio-overlay">
+                    <h3>Avant Garde</h3>
+                    <p>Creative Fashion</p>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="portrait">
+                <div class="portfolio-overlay">
+                    <h3>Artist Series</h3>
+                    <p>Creative Portraits</p>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="wedding">
+                <div class="portfolio-overlay">
+                    <h3>Lisa & David</h3>
+                    <p>Intimate Ceremony</p>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="event">
+                <div class="portfolio-overlay">
+                    <h3>Gallery Opening</h3>
+                    <p>Art Event</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- About Page -->
+    <div id="about" class="page-content" style="display: none;">
+        <section class="about-hero">
+            <div class="about-text">
+                <h1>About Ravi Saxena</h1>
+                <p>With over a decade of experience in fine art photography, I specialize in capturing the authentic emotions and timeless beauty of life's most significant moments.</p>
+                <p>My approach combines classical techniques with contemporary artistry, creating images that are both technically excellent and emotionally resonant. I believe that photography is not just about capturing what you see, but about revealing what you feel.</p>
+                <p>Based in San Francisco, I work with clients worldwide, bringing the same level of passion and artistry to every project, whether it's an intimate elopement or a grand celebration.</p>
+                <a href="#" onclick="showPage('contact')" class="btn btn-primary">Work With Me</a>
+            </div>
+            <div class="about-image"></div>
+        </section>
+        
+        <section class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Weddings Captured</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">25+</div>
+                    <div class="stat-label">Countries Visited</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Client Satisfaction</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact" class="page-content" style="display: none;">
+        <section class="contact-hero">
+            <h1>Let's Create Something Beautiful</h1>
+            <p>Ready to capture your special moments? I'd love to hear about your vision and discuss how we can bring it to life.</p>
+        </section>
+        
+        <section class="contact-content">
+            <div class="contact-info">
+                <h3>Get In Touch</h3>
+                <p>I believe every story is unique and deserves to be told with care and artistry. Whether you're planning an intimate gathering or a grand celebration, I'm here to help capture those precious moments.</p>
+                
+                <div class="contact-details">
+                    <div>
+                        <strong>Email:</strong>
+                        <span>hello@ravisaxena.com</span>
+                    </div>
+                    <div>
+                        <strong>Phone:</strong>
+                        <span>+1 (415) 555-0123</span>
+                    </div>
+                    <div>
+                        <strong>Studio:</strong>
+                        <span>San Francisco, CA</span>
+                    </div>
+                    <div>
+                        <strong>Travel:</strong>
+                        <span>Worldwide Available</span>
+                    </div>
+                </div>
+                
+                <p>Response time is typically within 24 hours. I look forward to hearing from you!</p>
+            </div>
+            
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="eventDate">Event Date</label>
+                            <input type="date" id="eventDate" name="eventDate">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="serviceType">Service Type</label>
+                        <select id="serviceType" name="serviceType" required>
+                            <option value="">Select a service</option>
+                            <option value="wedding">Wedding Photography</option>
+                            <option value="engagement">Engagement Session</option>
+                            <option value="fashion">Fashion Photography</option>
+                            <option value="portrait">Portrait Session</option>
+                            <option value="event">Event Photography</option>
+                            <option value="fineart">Fine Art Session</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="budget">Estimated Budget</label>
+                        <select id="budget" name="budget">
+                            <option value="">Select budget range</option>
+                            <option value="under-1000">Under $1,000</option>
+                            <option value="1000-2500">$1,000 - $2,500</option>
+                            <option value="2500-5000">$2,500 - $5,000</option>
+                            <option value="5000-plus">$5,000+</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Tell me about your vision</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Share details about your event, style preferences, location, and any special requirements..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Ravi Saxena Photography. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
