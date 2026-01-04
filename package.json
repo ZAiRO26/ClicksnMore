@@ -1,0 +1,15 @@
+{
+  "name": "clicksnmore-website",
+  "version": "1.0.0",
+  "description": "Photography website for Ravi Saxena",
+  "main": "index.html",
+  "dependencies": {
+    "nodemailer": "^6.9.13"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Ravi Saxena",
+  "license": "ISC"
+}

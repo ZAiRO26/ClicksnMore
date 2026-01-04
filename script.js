@@ -3,7 +3,7 @@ let currentPage = 'home';
 const pages = ['home', 'services', 'portfolio', 'about', 'contact'];
 
 // Initialize
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Hide loading screen
     setTimeout(() => {
         document.getElementById('loading').classList.add('hidden');
@@ -85,34 +85,53 @@ function filterPortfolio(category) {
 }
 
 // Form handling
-document.getElementById('contactForm').addEventListener('submit', function(e) {
+document.getElementById('contactForm').addEventListener('submit', function (e) {
     e.preventDefault();
-    
+
     // Get form data
     const formData = new FormData(this);
     const data = Object.fromEntries(formData);
-    
-    // Simulate form submission
+
+    // UI Loading State
     const submitBtn = this.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn.textContent;
     submitBtn.textContent = 'Sending...';
     submitBtn.disabled = true;
-    
-    setTimeout(() => {
-        alert('Thank you for your message! I\'ll get back to you within 24 hours.');
-        this.reset();
-        submitBtn.textContent = 'Send Message';
-        submitBtn.disabled = false;
-    }, 2000);
+
+    // Send to Netlify Function
+    fetch('/.netlify/functions/send-email', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => {
+            if (response.ok) {
+                alert('Thank you for your message! I\'ll get back to you within 24 hours.');
+                this.reset();
+            } else {
+                throw new Error('Network response was not ok.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Something went wrong. Please try again later or email me directly at hello@clicksnmore.in');
+        })
+        .finally(() => {
+            submitBtn.textContent = originalBtnText;
+            submitBtn.disabled = false;
+        });
 });
 
 // Smooth scrolling for better UX
 function smoothScroll() {
     const navbar = document.querySelector('.navbar');
     let lastScrollTop = 0;
-    
-    window.addEventListener('scroll', function() {
+
+    window.addEventListener('scroll', function () {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
+
         // Navbar background change
         if (scrollTop > 100) {
             navbar.style.background = 'rgba(250, 250, 250, 0.98)';
@@ -121,7 +140,7 @@ function smoothScroll() {
             navbar.style.background = 'rgba(250, 250, 250, 0.95)';
             navbar.style.boxShadow = 'none';
         }
-        
+
         lastScrollTop = scrollTop;
     });
 }
@@ -156,7 +175,7 @@ setTimeout(() => {
 }, 1000);
 
 // Keyboard navigation
-document.addEventListener('keydown', function(e) {
+document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') {
         // Close mobile menu
         document.getElementById('navLinks').classList.remove('active');
@@ -164,7 +183,7 @@ document.addEventListener('keydown', function(e) {
 });
 
 // Prevent right-click on images (optional protection)
-document.addEventListener('contextmenu', function(e) {
+document.addEventListener('contextmenu', function (e) {
     if (e.target.tagName === 'IMG') {
         e.preventDefault();
     }
@@ -173,7 +192,7 @@ document.addEventListener('contextmenu', function(e) {
 // Lazy loading simulation for portfolio items
 function lazyLoadPortfolio() {
     const portfolioItems = document.querySelectorAll('.portfolio-item');
-    
+
     portfolioItems.forEach((item, index) => {
         setTimeout(() => {
             item.style.opacity = '1';
@@ -183,9 +202,9 @@ function lazyLoadPortfolio() {
 }
 
 // Initialize lazy loading when portfolio page is shown
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Add click event to portfolio nav link
-    document.querySelector('a[onclick="showPage(\'portfolio\')"]').addEventListener('click', function() {
+    document.querySelector('a[onclick="showPage(\'portfolio\')"]').addEventListener('click', function () {
         setTimeout(lazyLoadPortfolio, 500);
     });
 });
@@ -193,7 +212,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Add smooth page transitions
 function addPageTransitions() {
     const pageElements = document.querySelectorAll('.page-content');
-    
+
     pageElements.forEach(page => {
         page.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
     });
@@ -232,4 +251,4 @@ function initCustomCursor() {
 // Initialize custom cursor on desktop
 if (window.innerWidth > 768) {
     initCustomCursor();
-} 
+}
